@@ -3,10 +3,10 @@ import javax.swing.*;
 public class GameWindow extends JFrame {
 
     // Constructor
-    public GameWindow() {
+    public GameWindow(int x, int y) {
 
         setTitle("new Window");
-        setSize(400, 400);
+        setSize(x, y);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel label = new JLabel("HELLO");
         getContentPane().add(label);

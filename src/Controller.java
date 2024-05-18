@@ -1,62 +1,73 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
-
-
 // GameLoop
 // Handle User Input
 // Needs a timer
 
 
-public class Controller extends Subject {
+public class Controller {
 
+    // GAME SIZE VARIABLES:
+    int HEIGHT = 500;
+    int WIDTH = 500;
 
-    // Requires: View has a gameWindow setup
-    // Effects: modifies View class GameWindow
-    // Purpose: Starts a thread that handles user input, controls PC in a live game
-    public void GameUserInputThread() {
-        // Create a KeyEventDispatcher to listen for key events
-        KeyEventDispatcher dispatcher = new KeyEventDispatcher() {
-            @Override
-            public boolean dispatchKeyEvent(KeyEvent e) {
-                // check if the pressed key is the up arrow key
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    System.out.println("UP arrow key pressed!");
-
-                    // Up arrow key function call to View
+    // Utility Classes
+    Game g;
+    View view;
+    Model model;
 
 
 
-                }
-                else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    System.out.println("DOWN arrow key pressed!");
-
-                    // Down arrow key function call to View
+    // Purpose: sets up a new game, creates and instantiates new classes
+    public void NewGame() {
 
 
+        // Instantiate new classes
+        g = new Game();
 
-                }
-                // return false to allow normal event dispatching to continue
-                return false;
-            }
-        };
+        view = new View();
+        view.newGameScreen(WIDTH, HEIGHT);
 
-        // Register the KeyEventDispatcher with the KeyboardFocusManager
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(dispatcher);
+        model = new Model();
+        model.setBounds(WIDTH, HEIGHT);
+        model.ResetVariables();
+
+        g.addObserver(model);
 
 
-        // ** this part may become redundant **
-        // Create a thread to keep the program running
-        Thread thread = new Thread(() -> {
-            while (true) {
-                // Do nothing, just keep the program running
-            }
-        });
 
-        thread.start();
+        // Start the game (user can now interact)
+        g.GameUserInputThread();
+        GameLoop();
+
+        System.out.println("Game terminated successfully");
+
     }
+
+
+    // TODO
+    // Purpose: Run the game
+    public void GameLoop() {
+
+
+        // Fix so no infinite loop
+        while (true) {
+            model.update();
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     // Requires: MenuWindow has been opened
@@ -64,43 +75,5 @@ public class Controller extends Subject {
     public void MainMenuThread() {
         //
     }
-
-
-
-
-    // Observer Interface Implementation
-    @Override
-    void addObserver(Observer o) {
-        observers.add(o);
-    }
-
-    @Override
-    void removeObserver() {
-        //
-    }
-
-    @Override
-    void notifyObservers() {
-        for (Observer o : observers) {
-            o.update();
-        }
-    }
-
-
-    // GameLoop
-    // Modifies
-    public void GameLoop() {
-
-        // HandleUserInput (implicitly handled by the usrInputThread
-
-        // Model.Update();
-
-        // View.renderNextFrame();
-
-
-        // sleep ...
-
-    }
-
 
 }
