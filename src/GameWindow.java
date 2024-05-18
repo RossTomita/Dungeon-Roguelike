@@ -2,8 +2,6 @@ import javax.swing.*;
 
 public class GameWindow extends JFrame {
 
-
-
     // Constructor
     public GameWindow() {
 
@@ -13,9 +11,7 @@ public class GameWindow extends JFrame {
         JLabel label = new JLabel("HELLO");
         getContentPane().add(label);
         setVisible(true);
-
     }
-
 
     // GameWindow Operations
 

@@ -10,11 +10,13 @@ import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 // Needs a timer
 
 
-public class Controller {
+public class Controller extends Subject {
 
-    // CONSTRUCTOR: creates new Controller capable of handling user input
-    public Controller() {
 
+    // Requires: View has a gameWindow setup
+    // Effects: modifies View class GameWindow
+    // Purpose: Starts a thread that handles user input, controls PC in a live game
+    public void GameUserInputThread() {
         // Create a KeyEventDispatcher to listen for key events
         KeyEventDispatcher dispatcher = new KeyEventDispatcher() {
             @Override
@@ -45,7 +47,6 @@ public class Controller {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(dispatcher);
 
 
-
         // ** this part may become redundant **
         // Create a thread to keep the program running
         Thread thread = new Thread(() -> {
@@ -55,15 +56,51 @@ public class Controller {
         });
 
         thread.start();
+    }
 
 
+    // Requires: MenuWindow has been opened
+    // Purpose: Starts thread handling user input for Main Menu
+    public void MainMenuThread() {
+        //
     }
 
 
 
+
+    // Observer Interface Implementation
+    @Override
+    void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    void removeObserver() {
+        //
+    }
+
+    @Override
+    void notifyObservers() {
+        for (Observer o : observers) {
+            o.update();
+        }
+    }
+
+
     // GameLoop
+    // Modifies
+    public void GameLoop() {
+
+        // HandleUserInput (implicitly handled by the usrInputThread
+
+        // Model.Update();
+
+        // View.renderNextFrame();
 
 
+        // sleep ...
+
+    }
 
 
 }

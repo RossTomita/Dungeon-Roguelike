@@ -3,7 +3,7 @@ public class Main {
 
         View view = new View();
 
-        view.NewScreen();
+        view.NewGameScreen();
 
 
         Controller controller = new Controller();
