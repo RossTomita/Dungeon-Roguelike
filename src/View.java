@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,28 +17,62 @@ public class View {
     // Purpose: Create a new blank screen (erasing previous one)
     void newGameScreen(int x, int y) {
         Screen = new GameWindow(x, y);
+        Screen.setLayout(null);
     }
 
 
 
     // Modifies: GameWindow screen field
     // Purpose: Generate next frame based on updated state of Model
-    void render(ArrayList<Entity> entities) {
+    void render(ArrayList<GameObject> gameObjects) {
 
-        // renders all entities
-        for (Entity e : entities) {
-            drawEntity(e);
+        // Draws Sprites
+        for (GameObject o : gameObjects) {
+            drawOnScreen(o);
         }
 
 
     }
 
 
-    // TODO
-    // Purpose: draw a single entity using JLabels
-    void drawEntity(Entity e) {
-        //
 
+    // PURPOSE: update the GameObject's position on the screen
+    // Notes: add colours, movement etc...
+    void drawOnScreen(GameObject o) {
+
+        int x = o.getEntity().getPosX();
+        int y = o.getEntity().getPosY();
+
+        int width = o.getSprite().getWidth();
+        int height = o.getSprite().getHeight();
+
+        o.getSprite().setBounds(x, y, width, height);
+
+    }
+
+
+
+
+    // PurposeL: Removes all components of the given Container
+    private static void removeAllComponents(Container container) {
+        container.removeAll(); // Remove all components
+        container.revalidate(); // Revalidate the container
+        container.repaint();   // Repaint the container
+    }
+
+
+    // MODIFIES: Screen
+    // PURPOSE: create a new gameObject and add to Screen
+    JLabel generatePlayer(int x, int y) {
+
+        JLabel player = new JLabel("YO");
+        player.setBounds(x, y, 20, 20); // (x, y, width, height)
+        // Set the foreground color of the JLabel to red
+        player.setForeground(Color.RED);
+
+        Screen.add(player);
+
+        return player;
 
     }
 

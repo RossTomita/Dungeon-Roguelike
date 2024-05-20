@@ -6,6 +6,14 @@ public abstract class Entity {
     static int HEIGHT;
 
 
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
     protected int dx;
     protected int dy;
     protected int posX;
@@ -14,7 +22,7 @@ public abstract class Entity {
 
 
 
-    abstract void update_KE(String ke);
+    abstract void processKeyEvent(String ke);
 
 
 
