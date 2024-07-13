@@ -23,7 +23,6 @@ public class GameObject {
 
 
 
-
     Entity entity;
     JLabel sprite;
 

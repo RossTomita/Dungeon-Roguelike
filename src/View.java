@@ -1,3 +1,5 @@
+import SpriteFactory.SpriteFactory;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,8 +11,6 @@ import java.util.List;
 
 public class View {
     GameWindow Screen;
-
-
 
 
 
@@ -35,7 +35,6 @@ public class View {
     }
 
 
-
     // PURPOSE: update the GameObject's position on the screen
     // Notes: add colours, movement etc...
     void drawOnScreen(GameObject o) {
@@ -51,8 +50,6 @@ public class View {
     }
 
 
-
-
     // PurposeL: Removes all components of the given Container
     private static void removeAllComponents(Container container) {
         container.removeAll(); // Remove all components
@@ -65,19 +62,13 @@ public class View {
     // PURPOSE: create a new gameObject and add to Screen
     JLabel generatePlayer(int x, int y) {
 
-        JLabel player = new JLabel("YO");
-        player.setBounds(x, y, 20, 20); // (x, y, width, height)
-        // Set the foreground color of the JLabel to red
-        player.setForeground(Color.RED);
+        SpriteFactory spriteFactory = new SpriteFactory();
+        JLabel playerSprite = spriteFactory.getSprite("Player", x, y);
 
-        Screen.add(player);
+        Screen.add(playerSprite);
 
-        return player;
+        return playerSprite;
 
     }
-
-
-
-
 
 }

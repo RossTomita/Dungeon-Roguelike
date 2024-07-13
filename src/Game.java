@@ -1,73 +1,90 @@
-import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
-public class Game extends Subject {
+public class Game {
 
-
-
-
-
-    // TODO: add a termination condition for this thread
-    // Requires: View has a gameWindow setup
-    // Effects: modifies View class GameWindow
-    // Purpose: Starts a thread that handles user input, controls PC in a live game
-    public void GameUserInputThread() {
-        // Create a KeyEventDispatcher to listen for key events
-        KeyEventDispatcher dispatcher = new KeyEventDispatcher() {
-            @Override
-            public boolean dispatchKeyEvent(KeyEvent e) {
-                // check if the pressed key is the up arrow key
+    // Utility Classes
+    KeyUserInputThread userInputThread;
+    View view;
+    Model model;
 
 
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-
-                    notifyObservers_KE("UP");
-
-                }
-
-                else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-
-                    notifyObservers_KE("DOWN");
-
-                }
-
-                else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-
-                    notifyObservers_KE("LEFT");
-
-                }
+    // Purpose: sets up a new game, creates and instantiates new classes
+    public void newGame() {
+        // Use Singleton
+        GameState gamestate = GameState.getInstance();
+        int WIDTH = gamestate.WIDTH;
+        int HEIGHT = gamestate.HEIGHT;
 
 
-                else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        // setup KeyUserInputThread
+        userInputThread = new KeyUserInputThread();
 
-                    notifyObservers_KE("RIGHT");
+        // setup View
+        view = new View();
+        view.newGameScreen(WIDTH, HEIGHT);
 
-
-                }
-
-
-
-                // return false to allow normal event dispatching to continue
-                return false;
-            }
-        };
-
-        // Register the KeyEventDispatcher with the KeyboardFocusManager
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(dispatcher);
+        // setup Model
+        model = new Model();
+        model.setModelBounds(WIDTH, HEIGHT);
+        model.ResetVariables();
 
 
-        // ** this part may become redundant **
-        // Create a thread to keep the program running
-        Thread thread = new Thread(() -> {
-            while (true) {
-                // Do nothing, just keep the program running
-            }
-        });
+        // Create the User-Controlled Player and add to game Objects
+        Player player = new Player(WIDTH / 2, HEIGHT / 2);
+        gamestate.setPlayer(player);
 
-        thread.start();
+        userInputThread.addObserver(player);
+
+        GameObject playerObject = new GameObject();
+        playerObject.setEntity(player);
+        playerObject.setSprite(view.generatePlayer(WIDTH / 2, HEIGHT / 2));
+
+
+        gamestate.addGameObject(playerObject);
+
+
+        // Start the game (user can now interact)
+        userInputThread.GameUserInputThread();
+        GameLoop();
+
+        System.out.println("Game terminated successfully");
+
     }
 
 
+    // TODO: add termination condition while(notDead)
+    // Purpose: Run the game
+    public void GameLoop() {
+
+        // Fix so no infinite loop
+        while (true) {
+
+            ArrayList<GameObject> gameObjects = GameState.getInstance().getGameObjects();
+
+            model.update(gameObjects);
+
+            view.render(gameObjects);
 
 
+            // Sleep to ensure program doesn't run too fast
+            try {
+                Thread.sleep(50); // Sleep for 3000 milliseconds (3 seconds)
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+
+//            // FOR TESTING ONLY:
+//            for (GameObject o : gameObjects) {
+//                System.out.println("VISUAL X:");
+//                System.out.println(o.getSprite().getX());
+//
+//                System.out.println("MODEL X:");
+//                System.out.println(o.getEntity().getPosX());
+//            }
+
+        }
+
+
+    }
 }

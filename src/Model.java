@@ -3,14 +3,15 @@
 // Subject - Array of Entities
 
 
+import Observer.MouseObserver;
+
 import java.util.ArrayList;
 
-public class Model {
+public class Model implements MouseObserver {
     int xBound;
     int yBound;
 
 
-    // Getters and setters
 
     public void setModelBounds(int x, int y) {
         xBound = x;
@@ -18,14 +19,20 @@ public class Model {
     }
 
 
-
     // Purpose: Update the state of the game based on current variables
     public void update(ArrayList<GameObject> gameObjects) {
-
         for (GameObject o : gameObjects) {
             o.getEntity().update_Pos();
+            keepInBounds(o.getEntity());
+
         }
+
+        // if event queue is nonempty, add items to gameObjects
+
     }
+
+
+
 
 
 
@@ -35,6 +42,27 @@ public class Model {
         //
 
     }
+
+
+    // Purpose: Check if GameObject is in bounds, if not set bound so it is
+    // TODO: reset the entity bounds to bound - spriteSize
+    void keepInBounds(Entity e) {
+
+        if (e.getPosX() >= xBound) {
+            e.setPosX(xBound - 10);
+        };
+        if (e.getPosY() >= yBound) {
+            e.setPosY(yBound - 10);
+        }
+        if (e.getPosX() <= 0) {
+            e.setPosX(10);
+        };
+        if (e.getPosY() <= 0) {
+            e.setPosY(10);
+        }
+    }
+
+
 
 
 
@@ -49,6 +77,20 @@ public class Model {
     }
 
 
+    @Override
+    public void updateMouseEvent(String me) {
 
 
+        // create entity
+
+
+
+        // create sprite
+
+
+        //GameState.getInstance().addGameObject( );
+
+
+
+    }
 }

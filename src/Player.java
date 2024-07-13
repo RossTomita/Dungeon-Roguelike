@@ -1,6 +1,6 @@
+import Observer.KeyObserver;
 
-
-public class Player extends Entity implements Observer {
+public class Player extends Entity implements KeyObserver {
 
     // TODO: abstract the speed variable
     int SPEED = 5;
@@ -10,6 +10,7 @@ public class Player extends Entity implements Observer {
         posY = y;
 
         // set starting velocity of player ship
+
 
 
     }
@@ -54,7 +55,6 @@ public class Player extends Entity implements Observer {
 
 
     }
-
 
 
 
