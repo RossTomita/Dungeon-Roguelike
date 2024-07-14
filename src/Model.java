@@ -4,8 +4,14 @@
 
 
 import Observer.MouseObserver;
+import SpriteFactory.SpriteFactory;
 
+import java.lang.Math;
+
+import javax.swing.*;
 import java.util.ArrayList;
+
+import static java.lang.Math.sqrt;
 
 public class Model implements MouseObserver {
     int xBound;
@@ -48,6 +54,8 @@ public class Model implements MouseObserver {
     // TODO: reset the entity bounds to bound - spriteSize
     void keepInBounds(Entity e) {
 
+
+
         if (e.getPosX() >= xBound) {
             e.setPosX(xBound - 10);
         };
@@ -78,19 +86,50 @@ public class Model implements MouseObserver {
 
 
     @Override
-    public void updateMouseEvent(String me) {
+    public void updateMouseEvent(String me, int x, int y) {
+        int playerX = GameState.getInstance().getPlayer().posX;
+
+        int playerY = GameState.getInstance().getPlayer().posY;
 
 
-        // create entity
+        int dx;
+        int dy;
+
+        // Basic aiming system
+        if (playerX < x) {
+            dx = 1;
+        } else if (playerX > x) {
+            dx = -1;
+        } else {
+            dx = 0;
+        }
+
+        if (playerY < y) {
+            dy = 1;
+        } else if (playerY > y) {
+            dy = -1;
+        } else {
+            dy = 0;
+        }
 
 
 
-        // create sprite
 
 
-        //GameState.getInstance().addGameObject( );
 
+        Entity projectileEntity = new Projectile(dx, dy);
+        projectileEntity.setPosX(GameState.getInstance().getPlayer().getPosX());
+        projectileEntity.setPosY(GameState.getInstance().getPlayer().getPosY());
 
+        // create Sprite
+        JLabel projectileSprite = SpriteFactory.getSprite("Projectile", x, y);
+
+        GameObject Projectile = new GameObject();
+        Projectile.setEntity(projectileEntity);
+
+        Projectile.setSprite(projectileSprite);
+
+        GameState.getInstance().addGameObject(Projectile);
 
     }
 }

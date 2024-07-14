@@ -3,6 +3,9 @@ import javax.swing.*;
 
 // REQUIRES: sprite must be drawn on the Screen on instantiation
 public class GameObject {
+    boolean rendered = false;
+
+
 
     public Entity getEntity() {
         return entity;

@@ -16,6 +16,8 @@ public class Game {
         int HEIGHT = gamestate.HEIGHT;
 
 
+
+
         // setup KeyUserInputThread
         userInputThread = new KeyUserInputThread();
 
@@ -38,9 +40,12 @@ public class Game {
         GameObject playerObject = new GameObject();
         playerObject.setEntity(player);
         playerObject.setSprite(view.generatePlayer(WIDTH / 2, HEIGHT / 2));
-
+        player.setRendered(true);
 
         gamestate.addGameObject(playerObject);
+
+        // Add model as MouseEvent Observer
+        view.addObserverToGameWindow(model);
 
 
         // Start the game (user can now interact)

@@ -4,11 +4,18 @@ public class GameState {
     // private static instance of class
     private static GameState instance;
     ArrayList<GameObject> gameObjects = new ArrayList<>();
+    ArrayList<GameObject> unrendered = new ArrayList<>();
     int HEIGHT = 500;
     int WIDTH = 500;
     Player player;
 
+    public ArrayList<GameObject> getUnrendered() {
+        return unrendered;
+    }
 
+    public void setUnrendered(ArrayList<GameObject> unrendered) {
+        this.unrendered = unrendered;
+    }
 
     // Make constructor private to prevent instantiation
     private GameState() {

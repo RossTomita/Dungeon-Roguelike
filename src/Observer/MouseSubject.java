@@ -5,7 +5,7 @@ public interface MouseSubject {
 
     void addObserver(MouseObserver o);
 
-    void notifyObservers_ME(String me);
+    void notifyObservers_ME(String me, int x, int y);
 
 
 }

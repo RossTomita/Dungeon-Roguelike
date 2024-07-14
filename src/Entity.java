@@ -4,7 +4,15 @@ public abstract class Entity {
     // Game Window Constraints
     static int WIDTH;
     static int HEIGHT;
+    boolean isRendered = false;
 
+    public boolean isRendered() {
+        return isRendered;
+    }
+
+    public void setRendered(boolean rendered) {
+        isRendered = rendered;
+    }
 
     public int getPosX() {
         return posX;
@@ -33,8 +41,6 @@ public abstract class Entity {
             posX += dx;
             posY += dy;
     }
-
-
 
 
 }

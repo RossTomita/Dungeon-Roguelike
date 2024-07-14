@@ -21,9 +21,10 @@ public class GameWindow extends JFrame implements MouseSubject {
             public void mouseClicked(MouseEvent e) {
                 // Handle mouse clicked events
                 //notifyObservers_ME("Mouse Clicked at (" + e.getX() + ", " + e.getY() + ")");
+                notifyObservers_ME("Mouse Clicked", e.getX(), e.getY());
 
-                System.out.println("Mouse Clicked at (" + e.getX() + ", " + e.getY() + ")");
-                // Sleep to ensure program doesn't run too fast
+
+
 
             }
 
@@ -69,9 +70,9 @@ public class GameWindow extends JFrame implements MouseSubject {
     }
 
     @Override
-    public void notifyObservers_ME(String me) {
+    public void notifyObservers_ME(String me, int x, int y) {
         for (MouseObserver o : observers) {
-            o.updateMouseEvent(me);
+            o.updateMouseEvent(me, x, y);
         }
     }
 

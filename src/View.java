@@ -3,7 +3,6 @@ import SpriteFactory.SpriteFactory;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 
 // Observer - Observer to Model (updates Entities)
@@ -11,6 +10,8 @@ import java.util.List;
 
 public class View {
     GameWindow Screen;
+    static ArrayList<GameObject> projectilesToAdd = new ArrayList<>();
+
 
 
 
@@ -20,32 +21,43 @@ public class View {
         Screen.setLayout(null);
     }
 
+    void addObserverToGameWindow(Model m) {
+        Screen.addObserver(m);
+    }
+
+
+
 
 
     // Modifies: GameWindow screen field
     // Purpose: Generate next frame based on updated state of Model
     void render(ArrayList<GameObject> gameObjects) {
-
         // Draws Sprites
-        for (GameObject o : gameObjects) {
-            drawOnScreen(o);
+        for (int i = 0; i < gameObjects.size(); i++) {
+            GameObject o = gameObjects.get(i);
+            if (!o.getEntity().isRendered()) {
+                Screen.add(o.getSprite());
+                drawOnScreen(o);
+            } else {
+                drawOnScreen(o);
+            }
         }
-
-
     }
+
+
 
 
     // PURPOSE: update the GameObject's position on the screen
     // Notes: add colours, movement etc...
     void drawOnScreen(GameObject o) {
 
-        int x = o.getEntity().getPosX();
-        int y = o.getEntity().getPosY();
+        float x = o.getEntity().getPosX();
+        float y = o.getEntity().getPosY();
 
         int width = o.getSprite().getWidth();
         int height = o.getSprite().getHeight();
 
-        o.getSprite().setBounds(x, y, width, height);
+        o.getSprite().setBounds((int) x, (int) y, width, height);
 
     }
 
