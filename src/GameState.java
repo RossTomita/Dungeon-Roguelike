@@ -5,8 +5,8 @@ public class GameState {
     private static GameState instance;
     ArrayList<GameObject> gameObjects = new ArrayList<>();
     ArrayList<GameObject> unrendered = new ArrayList<>();
-    int HEIGHT = 500;
-    int WIDTH = 500;
+    int HEIGHT = 1000;
+    int WIDTH = 1000;
     Player player;
 
     public ArrayList<GameObject> getUnrendered() {

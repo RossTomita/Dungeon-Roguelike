@@ -4,8 +4,7 @@ import javax.swing.*;
 // REQUIRES: sprite must be drawn on the Screen on instantiation
 public class GameObject {
     boolean rendered = false;
-
-
+    String type;
 
     public Entity getEntity() {
         return entity;
@@ -24,15 +23,8 @@ public class GameObject {
     }
 
 
-
-
     Entity entity;
     JLabel sprite;
-
-
-
-
-
 
 
 

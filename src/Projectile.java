@@ -3,6 +3,7 @@ public class Projectile extends Entity {
 
 
     public Projectile(int run, int rise) {
+        type = "Projectile";
         dx = run;
         dy = rise;
     }

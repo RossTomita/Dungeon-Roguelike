@@ -3,11 +3,12 @@ import Observer.KeyObserver;
 public class Player extends Entity implements KeyObserver {
 
     // TODO: abstract the speed variable
-    int SPEED = 5;
+    int SPEED = 2;
 
     public Player(int x, int y) {
         posX = x;
         posY = y;
+        type = "Player";
 
         // set starting velocity of player ship
 

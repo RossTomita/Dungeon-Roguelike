@@ -5,19 +5,13 @@ import java.awt.*;
 
 public class ProjectileSprite implements Sprite {
 
-
-
     // Player Sprite Representation
     @Override
-    public JLabel draw(int x, int y) {
+    public void draw(int x, int y, Graphics g) {
 
-        JLabel projectile = new JLabel(".");
-        projectile.setBounds(x, y, 10, 10); // (x, y, width, height)
-        // Set the foreground color of the JLabel to red
-        projectile.setForeground(Color.RED);
-
-        return projectile;
-
+        g.drawRect(x, y, 4, 4);
+        g.fillRect(x, y, 4, 4);
+        g.setColor(Color.RED);
 
     }
 

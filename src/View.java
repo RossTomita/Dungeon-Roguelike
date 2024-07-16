@@ -2,7 +2,10 @@ import SpriteFactory.SpriteFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import static SpriteFactory.SpriteFactory.drawSprite;
 
 
 // Observer - Observer to Model (updates Entities)
@@ -18,7 +21,6 @@ public class View {
     // Purpose: Create a new blank screen (erasing previous one)
     void newGameScreen(int x, int y) {
         Screen = new GameWindow(x, y);
-        Screen.setLayout(null);
     }
 
     void addObserverToGameWindow(Model m) {
@@ -26,40 +28,56 @@ public class View {
     }
 
 
+    public GameWindow getScreen() {
+        return Screen;
+    }
 
-
+    public void setScreen(GameWindow screen) {
+        Screen = screen;
+    }
 
     // Modifies: GameWindow screen field
     // Purpose: Generate next frame based on updated state of Model
     void render(ArrayList<GameObject> gameObjects) {
         // Draws Sprites
+        BufferedImage  bf = new BufferedImage(Screen.getWidth(), Screen.getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics g = Screen.getGraphics();
+
+        Screen.paint();
+
+        // Buffered image for smoother animation
+        animation(GameState.getInstance().getGameObjects(), bf.getGraphics());
+        g.drawImage(bf, 0, 0, null);
+
+
+    }
+
+
+    void animation(ArrayList<GameObject> gameObjects, Graphics g) {
+
+        int gameWidth = GameState.getInstance().getHEIGHT();
+        int gameHeight = GameState.getInstance().getWIDTH();
+
+        // Draw white box border
+        g.drawRect(0, 0, gameWidth, gameHeight);
+        g.setColor(Color.WHITE);
+
+
+        // Draw
         for (int i = 0; i < gameObjects.size(); i++) {
             GameObject o = gameObjects.get(i);
-            if (!o.getEntity().isRendered()) {
-                Screen.add(o.getSprite());
-                drawOnScreen(o);
-            } else {
-                drawOnScreen(o);
-            }
+            drawSprite(o.getEntity().getType(), o.getEntity().getPosX(), o.getEntity().getPosY(), g);
         }
     }
 
 
 
 
-    // PURPOSE: update the GameObject's position on the screen
-    // Notes: add colours, movement etc...
-    void drawOnScreen(GameObject o) {
 
-        float x = o.getEntity().getPosX();
-        float y = o.getEntity().getPosY();
 
-        int width = o.getSprite().getWidth();
-        int height = o.getSprite().getHeight();
 
-        o.getSprite().setBounds((int) x, (int) y, width, height);
 
-    }
+
 
 
     // PurposeL: Removes all components of the given Container
@@ -72,15 +90,8 @@ public class View {
 
     // MODIFIES: Screen
     // PURPOSE: create a new gameObject and add to Screen
-    JLabel generatePlayer(int x, int y) {
-
-        SpriteFactory spriteFactory = new SpriteFactory();
-        JLabel playerSprite = spriteFactory.getSprite("Player", x, y);
-
-        Screen.add(playerSprite);
-
-        return playerSprite;
-
+    void generatePlayer(int x, int y, Graphics g) {
+        drawSprite("Player", x, y, g);
     }
 
 }

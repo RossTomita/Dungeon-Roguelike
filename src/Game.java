@@ -39,7 +39,6 @@ public class Game {
 
         GameObject playerObject = new GameObject();
         playerObject.setEntity(player);
-        playerObject.setSprite(view.generatePlayer(WIDTH / 2, HEIGHT / 2));
         player.setRendered(true);
 
         gamestate.addGameObject(playerObject);
@@ -73,10 +72,12 @@ public class Game {
 
             // Sleep to ensure program doesn't run too fast
             try {
-                Thread.sleep(50); // Sleep for 3000 milliseconds (3 seconds)
+                Thread.sleep(10); // Sleep for 3000 milliseconds (3 seconds)
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+
+
 
 
 //            // FOR TESTING ONLY:

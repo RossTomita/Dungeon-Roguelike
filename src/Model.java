@@ -6,12 +6,10 @@
 import Observer.MouseObserver;
 import SpriteFactory.SpriteFactory;
 
-import java.lang.Math;
-
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
-import static java.lang.Math.sqrt;
 
 public class Model implements MouseObserver {
     int xBound;
@@ -27,17 +25,17 @@ public class Model implements MouseObserver {
 
     // Purpose: Update the state of the game based on current variables
     public void update(ArrayList<GameObject> gameObjects) {
+
         for (GameObject o : gameObjects) {
             o.getEntity().update_Pos();
-            keepInBounds(o.getEntity());
+            keepInBounds(o);
+
 
         }
 
         // if event queue is nonempty, add items to gameObjects
 
     }
-
-
 
 
 
@@ -51,23 +49,49 @@ public class Model implements MouseObserver {
 
 
     // Purpose: Check if GameObject is in bounds, if not set bound so it is
-    // TODO: reset the entity bounds to bound - spriteSize
-    void keepInBounds(Entity e) {
+    // Modifies: Entities in Singleton GameObjects list
+    void keepInBounds(GameObject o) {
 
+        if (Objects.equals(o.getEntity().getType(), "Player")) {
 
+            if (o.getEntity().getPosX() + (o.getEntity().getWidth() / 2)  >= xBound) {
+                o.getEntity().setPosX(xBound - (o.getEntity().getWidth() / 2));
+            }
+            if (o.getEntity().getPosY() + (o.getEntity().getHeight() / 2)  >= yBound) {
+                o.getEntity().setPosY(yBound - o.getEntity().getHeight() / 2);
+            }
+            if (o.getEntity().getPosX() - (o.getEntity().getWidth() / 2) <= 0) {
+                o.getEntity().setPosX(o.getEntity().getWidth() / 2);
+            }
+            if (o.getEntity().getPosY() - (o.getEntity().getHeight() / 2) <= 0) {
+                o.getEntity().setPosY(o.getEntity().getHeight() / 2);
+            }
 
-        if (e.getPosX() >= xBound) {
-            e.setPosX(xBound - 10);
-        };
-        if (e.getPosY() >= yBound) {
-            e.setPosY(yBound - 10);
         }
-        if (e.getPosX() <= 0) {
-            e.setPosX(10);
-        };
-        if (e.getPosY() <= 0) {
-            e.setPosY(10);
+        else if (Objects.equals(o.getEntity().getType(), "Projectile")) {
+            if (o.getEntity().getPosX() + (o.getEntity().getWidth() / 2)  >= xBound) {
+                o.getEntity().setDx(-1);
+            }
+            if (o.getEntity().getPosY() + (o.getEntity().getHeight() / 2)  >= yBound) {
+                o.getEntity().setDy(-1);
+            }
+            if (o.getEntity().getPosX() - (o.getEntity().getWidth() / 2) <= 0) {
+                o.getEntity().setDx(1);
+            }
+            if (o.getEntity().getPosY() - (o.getEntity().getHeight() / 2) <= 0) {
+                o.getEntity().setDy(1);
+            }
+
+
+
+
         }
+
+
+
+
+
+
     }
 
 
@@ -122,12 +146,8 @@ public class Model implements MouseObserver {
         projectileEntity.setPosY(GameState.getInstance().getPlayer().getPosY());
 
         // create Sprite
-        JLabel projectileSprite = SpriteFactory.getSprite("Projectile", x, y);
-
         GameObject Projectile = new GameObject();
         Projectile.setEntity(projectileEntity);
-
-        Projectile.setSprite(projectileSprite);
 
         GameState.getInstance().addGameObject(Projectile);
 

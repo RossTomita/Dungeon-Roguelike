@@ -8,14 +8,14 @@ public class PlayerSprite implements Sprite {
 
     // Player Sprite Representation
     @Override
-    public JLabel draw(int x, int y) {
+    public void draw(int x, int y, Graphics g) {
+        g.setColor(Color.BLUE);
+        g.drawOval(x, y, 10, 10);
+        g.fillOval(x, y, 10, 10);
 
-        JLabel player = new JLabel("&");
-        player.setBounds(x, y, 40, 40); // (x, y, width, height)
-        // Set the foreground color of the JLabel to red
-        player.setForeground(Color.BLUE);
 
-        return player;
+
+
 
 
     }

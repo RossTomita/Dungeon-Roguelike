@@ -1,21 +1,21 @@
 package SpriteFactory;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class SpriteFactory {
 
     //TODO: add bounds checks
-    public static JLabel getSprite(String spriteType, int x, int y) {
+    public static void drawSprite(String spriteType, int x, int y, Graphics g) {
         if (spriteType == null) {
-            return null;
+            // do nothing
         }
         if (spriteType.equalsIgnoreCase("Player")) {
-            return new PlayerSprite().draw(x, y);
+            new PlayerSprite().draw(x, y, g);
         }
         else if  (spriteType.equalsIgnoreCase("Projectile")) {
-            return new ProjectileSprite().draw(x, y);
+            new ProjectileSprite().draw(x, y, g);
         }
-        return null;
     }
 
 
