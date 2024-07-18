@@ -1,3 +1,5 @@
+package GameState;
+
 import Observer.KeyObserver;
 
 public class Player extends Entity implements KeyObserver {
@@ -8,7 +10,7 @@ public class Player extends Entity implements KeyObserver {
     public Player(int x, int y) {
         posX = x;
         posY = y;
-        type = "Player";
+        type = "Entity.Player";
 
         // set starting velocity of player ship
 

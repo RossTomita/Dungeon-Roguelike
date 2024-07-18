@@ -6,7 +6,7 @@ import java.awt.*;
 public class PlayerSprite implements Sprite {
 
 
-    // Player Sprite Representation
+    // Entity.Player Sprite Representation
     @Override
     public void draw(int x, int y, Graphics g) {
         g.setColor(Color.BLUE);

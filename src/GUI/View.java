@@ -1,6 +1,9 @@
-import SpriteFactory.SpriteFactory;
+package GUI;
 
-import javax.swing.*;
+import GameState.GameState;
+import Model.Model;
+import Model.GameObject;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 import static SpriteFactory.SpriteFactory.drawSprite;
 
 
-// Observer - Observer to Model (updates Entities)
+// Observer - Observer to Model.Model (updates Entities)
 
 
 public class View {
@@ -19,11 +22,12 @@ public class View {
 
 
     // Purpose: Create a new blank screen (erasing previous one)
-    void newGameScreen(int x, int y) {
+    public void newGameScreen(int x, int y) {
         Screen = new GameWindow(x, y);
     }
 
-    void addObserverToGameWindow(Model m) {
+    // Add Observer to GameWindow field class
+    public void addObserverToGameWindow(Model m) {
         Screen.addObserver(m);
     }
 
@@ -36,9 +40,9 @@ public class View {
         Screen = screen;
     }
 
-    // Modifies: GameWindow screen field
-    // Purpose: Generate next frame based on updated state of Model
-    void render(ArrayList<GameObject> gameObjects) {
+    // Modifies: GUI.GameWindow screen field
+    // Purpose: Generate next frame based on updated state of Model.Model
+    public void render(ArrayList<GameObject> gameObjects) {
         // Draws Sprites
         BufferedImage  bf = new BufferedImage(Screen.getWidth(), Screen.getHeight(), BufferedImage.TYPE_INT_RGB);
         Graphics g = Screen.getGraphics();
@@ -91,7 +95,7 @@ public class View {
     // MODIFIES: Screen
     // PURPOSE: create a new gameObject and add to Screen
     void generatePlayer(int x, int y, Graphics g) {
-        drawSprite("Player", x, y, g);
+        drawSprite("Entity.Player", x, y, g);
     }
 
 }

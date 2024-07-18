@@ -1,19 +1,21 @@
+package GameState;
+
 import java.util.ArrayList;
 
 public class GameState {
     // private static instance of class
     private static GameState instance;
-    ArrayList<GameObject> gameObjects = new ArrayList<>();
-    ArrayList<GameObject> unrendered = new ArrayList<>();
+    ArrayList<Model.GameObject> gameObjects = new ArrayList<>();
+    ArrayList<Model.GameObject> unrendered = new ArrayList<>();
     int HEIGHT = 1000;
     int WIDTH = 1000;
     Player player;
 
-    public ArrayList<GameObject> getUnrendered() {
+    public ArrayList<Model.GameObject> getUnrendered() {
         return unrendered;
     }
 
-    public void setUnrendered(ArrayList<GameObject> unrendered) {
+    public void setUnrendered(ArrayList<Model.GameObject> unrendered) {
         this.unrendered = unrendered;
     }
 
@@ -32,11 +34,11 @@ public class GameState {
     }
 
 
-    public ArrayList<GameObject> getGameObjects() {
+    public ArrayList<Model.GameObject> getGameObjects() {
         return gameObjects;
     }
 
-    public void setGameObjects(ArrayList<GameObject> gameObjects) {
+    public void setGameObjects(ArrayList<Model.GameObject> gameObjects) {
         this.gameObjects = gameObjects;
     }
 
@@ -57,7 +59,7 @@ public class GameState {
     }
 
 
-    public void addGameObject(GameObject o) {
+    public void addGameObject(Model.GameObject o) {
         gameObjects.add(o);
     }
 

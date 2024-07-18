@@ -1,10 +1,11 @@
-import static org.junit.jupiter.api.Assertions.*;
-
-import SpriteFactory.SpriteFactory;
+import GameState.Player;
+import GameState.Entity;
+import Model.Model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import Model.GameObject;
 
-import javax.swing.*;
+import static org.junit.Assert.assertEquals;
 
 class testModel {
     private GameObject gameObject;

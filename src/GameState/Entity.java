@@ -1,7 +1,7 @@
-
+package GameState;
 
 public class Entity {
-    // Game Window Constraints
+    // GameRunner.Game Window Constraints
     static int width;
     static int height;
     boolean isRendered = false;
@@ -78,7 +78,7 @@ public class Entity {
     protected int posY;
 
 
-    void update_Pos() {
+    public void update_Pos() {
             posX += dx;
             posY += dy;
     }

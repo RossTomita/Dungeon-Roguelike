@@ -1,3 +1,5 @@
+package Threads;
+
 import Observer.KeySubject;
 
 import java.awt.*;
@@ -7,8 +9,8 @@ public class KeyUserInputThread extends KeySubject {
 
 
     // TODO: add a termination condition for this thread
-    // Requires: View has a gameWindow setup
-    // Effects: modifies GameWindow in View class
+    // Requires: GUI.View has a gameWindow setup
+    // Effects: modifies GUI.GameWindow in GUI.View class
     // Purpose: Starts a thread that handles user input to control PC in a live game
     public void GameUserInputThread() {
         // Create a KeyEventDispatcher to listen for key events

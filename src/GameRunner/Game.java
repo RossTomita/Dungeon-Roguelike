@@ -1,4 +1,13 @@
+package GameRunner;
+
+import GUI.View;
+import GameState.GameState;
+import GameState.Player;
+import Model.Model;
+import Model.GameObject;
 import java.util.ArrayList;
+import Threads.KeyUserInputThread;
+
 
 public class Game {
 
@@ -12,26 +21,26 @@ public class Game {
     public void newGame() {
         // Use Singleton
         GameState gamestate = GameState.getInstance();
-        int WIDTH = gamestate.WIDTH;
-        int HEIGHT = gamestate.HEIGHT;
+        int WIDTH = gamestate.getWIDTH();
+        int HEIGHT = gamestate.getHEIGHT();
 
 
 
 
-        // setup KeyUserInputThread
+        // setup Threads.KeyUserInputThread
         userInputThread = new KeyUserInputThread();
 
-        // setup View
+        // setup GUI.View
         view = new View();
         view.newGameScreen(WIDTH, HEIGHT);
 
-        // setup Model
+        // setup Model.Model
         model = new Model();
         model.setModelBounds(WIDTH, HEIGHT);
         model.ResetVariables();
 
 
-        // Create the User-Controlled Player and add to game Objects
+        // Create the User-Controlled Entity.Player and add to game Objects
         Player player = new Player(WIDTH / 2, HEIGHT / 2);
         gamestate.setPlayer(player);
 
@@ -51,7 +60,7 @@ public class Game {
         userInputThread.GameUserInputThread();
         GameLoop();
 
-        System.out.println("Game terminated successfully");
+        System.out.println("GameRunner.Game terminated successfully");
 
     }
 
@@ -81,7 +90,7 @@ public class Game {
 
 
 //            // FOR TESTING ONLY:
-//            for (GameObject o : gameObjects) {
+//            for (Model.Model.GameObject o : gameObjects) {
 //                System.out.println("VISUAL X:");
 //                System.out.println(o.getSprite().getX());
 //

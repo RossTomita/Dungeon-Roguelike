@@ -1,4 +1,5 @@
-import Observer.KeyObserver;
+package GUI;
+
 import Observer.MouseObserver;
 import Observer.MouseSubject;
 
@@ -89,7 +90,7 @@ public class GameWindow extends JFrame implements MouseSubject {
     }
 
 
-    // GameWindow Operations
+    // GUI.GameWindow Operations
 
 
 }

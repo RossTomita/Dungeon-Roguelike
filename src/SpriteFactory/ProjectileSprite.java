@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class ProjectileSprite implements Sprite {
 
-    // Player Sprite Representation
+    // Entity.Player Sprite Representation
     @Override
     public void draw(int x, int y, Graphics g) {
 

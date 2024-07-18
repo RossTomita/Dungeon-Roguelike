@@ -1,8 +1,11 @@
+package Model;
+
+import GameState.Entity;
+
 import javax.swing.*;
 
-
-// REQUIRES: sprite must be drawn on the Screen on instantiation
 public class GameObject {
+
     boolean rendered = false;
     String type;
 
@@ -25,7 +28,5 @@ public class GameObject {
 
     Entity entity;
     JLabel sprite;
-
-
 
 }
