@@ -1,6 +1,6 @@
 package GUI;
 
-import GameState.GameState;
+import GameObjects.GameState;
 import Model.Model;
 import Model.GameObject;
 

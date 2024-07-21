@@ -1,6 +1,6 @@
 package Model;
 
-import GameState.Entity;
+import GameObjects.Entity;
 
 import javax.swing.*;
 

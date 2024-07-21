@@ -1,8 +1,8 @@
 package GameRunner;
 
 import GUI.View;
-import GameState.GameState;
-import GameState.Player;
+import GameObjects.GameState;
+import GameObjects.Player;
 import Model.Model;
 import Model.GameObject;
 import java.util.ArrayList;

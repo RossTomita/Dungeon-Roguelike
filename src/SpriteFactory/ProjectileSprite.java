@@ -11,7 +11,7 @@ public class ProjectileSprite implements Sprite {
 
         g.drawRect(x, y, 4, 4);
         g.fillRect(x, y, 4, 4);
-        g.setColor(Color.RED);
+        g.setColor(Color.YELLOW);
 
     }
 

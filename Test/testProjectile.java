@@ -1,5 +1,5 @@
-import GameState.Entity;
-import GameState.Projectile;
+import GameObjects.Entity;
+import GameObjects.Projectile;
 import org.junit.jupiter.api.BeforeEach;
 
 public class testProjectile {

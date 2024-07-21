@@ -1,4 +1,4 @@
-package GameState;
+package GameObjects;
 
 public class Entity {
     // GameRunner.Game Window Constraints
@@ -6,6 +6,17 @@ public class Entity {
     static int height;
     boolean isRendered = false;
     String type;
+
+    protected int dx;
+    protected int dy;
+    protected int posX;
+    protected int posY;
+
+    // AABB box
+    protected int maxX;
+    protected int maxY;
+    protected int minX;
+    protected int minY;
 
 
     public static int getWidth() {
@@ -72,11 +83,38 @@ public class Entity {
         this.dy = dy;
     }
 
-    protected int dx;
-    protected int dy;
-    protected int posX;
-    protected int posY;
 
+    public int getMaxX() {
+        return maxX;
+    }
+
+    public void setMaxX(int maxX) {
+        this.maxX = maxX;
+    }
+
+    public int getMaxY() {
+        return maxY;
+    }
+
+    public void setMaxY(int maxY) {
+        this.maxY = maxY;
+    }
+
+    public int getMinX() {
+        return minX;
+    }
+
+    public void setMinX(int minX) {
+        this.minX = minX;
+    }
+
+    public int getMinY() {
+        return minY;
+    }
+
+    public void setMinY(int minY) {
+        this.minY = minY;
+    }
 
     public void update_Pos() {
             posX += dx;

@@ -3,12 +3,11 @@ package Model;// Contains Array of Entities to be updated
 // Subject - Array of Entities
 
 
-import GameState.Entity;
-import GameState.GameState;
+import GameObjects.Entity;
+import GameObjects.GameState;
 import Observer.MouseObserver;
-import GameState.Projectile;
+import GameObjects.Projectile;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Objects;
 

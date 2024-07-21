@@ -1,15 +1,12 @@
 package SpriteFactory;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class PlayerSprite implements Sprite {
+public class EnemySprite implements Sprite {
 
 
-    // Entity.Player Sprite Representation
     @Override
     public void draw(int x, int y, Graphics g) {
-
 
         // Polygon representation of enemy image
 
@@ -22,21 +19,13 @@ public class PlayerSprite implements Sprite {
         // number of vertices
         int numberofpoints = 8;
 
-        g.setColor(Color.WHITE);
+        g.setColor(Color.RED);
         g.drawPolygon(xCoords, yCoords, numberofpoints);
         g.fillPolygon(xCoords, yCoords, numberofpoints);
 
-
-
-
-//        g.setColor(Color.BLUE);
-//        g.drawOval(x, y, 10, 10);
-//        g.fillOval(x, y, 10, 10);
-
-
-
-
-
-
     }
+
+
+
+
 }

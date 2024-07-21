@@ -1,5 +1,5 @@
-import GameState.Player;
-import GameState.Entity;
+import GameObjects.Player;
+import GameObjects.Entity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

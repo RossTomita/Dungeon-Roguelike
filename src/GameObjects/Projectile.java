@@ -1,4 +1,4 @@
-package GameState;
+package GameObjects;
 
 public class Projectile extends Entity {
     boolean onScreen = false;
